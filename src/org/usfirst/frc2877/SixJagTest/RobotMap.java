@@ -45,74 +45,33 @@ public class RobotMap {
         driveTrainLFrontJag = jags.init(1, "driveTrainLFrontJag");
         driveTrainLMidJag = jags.init(2, "driveTrainLMidJag");
         driveTrainLBackJag = jags.init(3, "driveTrainLBackJag");
+        
         driveTrainRFrontJag = jags.init(4, "driveTrainRFrontJag");
         driveTrainRMidJag = jags.init(5, "driveTrainRMidJag");
         driveTrainRBackJag = jags.init(6, "driveTrainRBackJag");
-      
-        try { 
-            driveTrainLFrontJag = new CANJaguar(1);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-	
-        
-        try { 
-            driveTrainRFrontJag = new CANJaguar(2);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-	
-        
+              
         driveTrainFrontDrive = new RobotDrive(driveTrainLFrontJag, driveTrainRFrontJag);
 	
-        driveTrainFrontDrive.setSafetyEnabled(false);
-        driveTrainFrontDrive.setExpiration(0.1);
+        driveTrainFrontDrive.setSafetyEnabled(true);
+        driveTrainFrontDrive.setExpiration(0.2);
         driveTrainFrontDrive.setSensitivity(0.5);
         driveTrainFrontDrive.setMaxOutput(1.0);
 
         driveTrainFrontDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);        
 
-        try { 
-            driveTrainLMidJag = new CANJaguar(3);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-	
-        
-        try { 
-            driveTrainRMidJag = new CANJaguar(4);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-	
-        
         driveTrainMidDrive = new RobotDrive(driveTrainLMidJag, driveTrainRMidJag);
 	
-        driveTrainMidDrive.setSafetyEnabled(false);
-        driveTrainMidDrive.setExpiration(0.1);
+        driveTrainMidDrive.setSafetyEnabled(true);
+        driveTrainMidDrive.setExpiration(0.2);
         driveTrainMidDrive.setSensitivity(0.5);
         driveTrainMidDrive.setMaxOutput(1.0);
 
         driveTrainMidDrive.setInvertedMotor(RobotDrive.MotorType.kRearRight, true);        
 
-        try { 
-            driveTrainLBackJag = new CANJaguar(5);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-	
-        
-        try { 
-            driveTrainRBackJag = new CANJaguar(6);
-        } catch (CANTimeoutException ex) {
-            ex.printStackTrace();
-        }
-	
-        
         driveTrainBackDrive = new RobotDrive(driveTrainLBackJag, driveTrainRBackJag);
 	
-        driveTrainBackDrive.setSafetyEnabled(false);
-        driveTrainBackDrive.setExpiration(0.1);
+        driveTrainBackDrive.setSafetyEnabled(true);
+        driveTrainBackDrive.setExpiration(0.2);
         driveTrainBackDrive.setSensitivity(0.5);
         driveTrainBackDrive.setMaxOutput(1.0);
 

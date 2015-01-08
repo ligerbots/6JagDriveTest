@@ -15,9 +15,10 @@ public class CANJags {
     public CANJag jags[];
     
     public CANJags(int number) {
-        // CAN bus numberin starts at 2, so we allocate and array from 2 to 9
-        // so we can index directly by CAN ID and not worry about +/- errors
+        // CAN bus numbering could start at 1, 2, or any other value
+        // We make the array two larger than it needs to be, just in case..
         jags = new CANJag[number+2];
+        for(int i=1; i<jags.length; i++) jags[i] = null;
     }
     
     public CANJaguar init(int i, String description) {
@@ -28,13 +29,15 @@ public class CANJags {
     
     public void UpdateDashboard()
     {
-        // remember, CAN IDs start at 2. Array will actually be jagcount+2 long,
-        // so jagcount+1 is our highest index
-        for(int i=2; i<jags.length; i++) {
-          CANJag j = jags[i];
-          SmartDashboard.putBoolean(Integer.toString(i), j.getStat());
-          SmartDashboard.putNumber("V:"+ j.getDescr(), j.getVoltage());
-          SmartDashboard.putNumber("A:"+ j.getDescr(), j.getCurrent());
+        // Display all the CANJags that were actually configured
+        for(int i=1; i<jags.length; i++) {
+            if (jags[i] != null)
+            {
+                CANJag j = jags[i];
+                SmartDashboard.putBoolean(Integer.toString(i), j.getStat());
+                SmartDashboard.putNumber("V:"+ j.getDescr(), j.getVoltage());
+                SmartDashboard.putNumber("A:"+ j.getDescr(), j.getCurrent());
+            }
         }
     }
     
